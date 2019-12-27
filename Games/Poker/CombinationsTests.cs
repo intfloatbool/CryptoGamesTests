@@ -38,6 +38,7 @@ namespace CryptoGamesTests.Games.Poker
 
             //Assert
             Assert.IsNotNull(comboCards);
+            Assert.IsNotInstanceOfType(comboCards, typeof(EmptyCombo));
             Assert.IsTrue(comboCards.Cards.Any());
             Assert.IsTrue(comboCards.Cards.Contains(playerCard1));
             Assert.AreEqual<Combo>(Combo.HIGH_CARD, comboCards.Combo);
@@ -74,6 +75,7 @@ namespace CryptoGamesTests.Games.Poker
 
             //Assert
             Assert.IsNotNull(comboCards);
+            Assert.IsNotInstanceOfType(comboCards, typeof(EmptyCombo));
             Assert.IsTrue(comboCards.Cards.Any());
             Assert.AreEqual<Combo>(Combo.ONE_PAIR, comboCards.Combo);
         }
