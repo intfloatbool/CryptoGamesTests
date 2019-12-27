@@ -8,6 +8,7 @@ namespace CryptoGamesTests
         [TestMethod]
         public void TestMethod1()
         {
+
         }
     }
 }
