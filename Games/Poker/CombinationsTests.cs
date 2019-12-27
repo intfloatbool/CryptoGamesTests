@@ -39,16 +39,18 @@ namespace CryptoGamesTests.Games.Poker
             //Assert
             Assert.IsNotNull(comboCards);
             Assert.IsNotInstanceOfType(comboCards, typeof(EmptyCombo));
+            Assert.AreEqual<Combo>(Combo.HIGH_CARD, comboCards.Combo);
             Assert.IsTrue(comboCards.Cards.Any());
             Assert.IsTrue(comboCards.Cards.Contains(playerCard1));
-            Assert.AreEqual<Combo>(Combo.HIGH_CARD, comboCards.Combo);
         }
 
         [TestMethod]
         public void OnePairCombo()
         {
-            var playerCard1 = new Card(Rank.KING, Suit.SPADES);
-            var playerCard2 = new Card(Rank.FOUR, Suit.HEARTS);
+            var countOfPair = 2;
+
+            var playerCard1 = new Card(Rank.KING, Suit.SPADES); 
+            var playerCard2 = new Card(Rank.FOUR, Suit.HEARTS); //first card
 
             var tableCards = new Card[]
             {
@@ -56,8 +58,11 @@ namespace CryptoGamesTests.Games.Poker
                 new Card(Rank.THREE, Suit.SPADES),
                 new Card(Rank.JACK, Suit.HEARTS),
                 new Card(Rank.EIGHT, Suit.CLUBS),
-                new Card(Rank.KING, Suit.DIAMONDS) // << pair of cards
+
+                new Card(Rank.FOUR, Suit.DIAMONDS) // << Second Card, so pair
             };
+
+            var pairedCardFromTable = tableCards[4];
 
             //Arrange
             var fullCardsOfTable = new List<Card>()
@@ -72,12 +77,16 @@ namespace CryptoGamesTests.Games.Poker
             //Act
             var comboCards = ComboChecker.Instance.CheckCombo(fullCardsOfTable);
 
+            var isComboCardsContainsPair = comboCards.Cards.Contains(playerCard2) && comboCards.Cards.Contains(pairedCardFromTable);
 
             //Assert
             Assert.IsNotNull(comboCards);
             Assert.IsNotInstanceOfType(comboCards, typeof(EmptyCombo));
-            Assert.IsTrue(comboCards.Cards.Any());
             Assert.AreEqual<Combo>(Combo.ONE_PAIR, comboCards.Combo);
+            Assert.IsTrue(comboCards.Cards.Any());
+            Assert.AreEqual(comboCards.Cards.Count, countOfPair);
+            Assert.IsTrue(isComboCardsContainsPair);
+            
         }
 
     }
