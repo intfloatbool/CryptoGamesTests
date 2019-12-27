@@ -39,6 +39,7 @@ namespace CryptoGamesTests.Games.Poker
             //Assert
             Assert.IsNotNull(comboCards);
             Assert.IsNotInstanceOfType(comboCards, typeof(EmptyCombo));
+
             Assert.AreEqual<Combo>(Combo.HIGH_CARD, comboCards.Combo);
             Assert.IsTrue(comboCards.Cards.Any());
             Assert.IsTrue(comboCards.Cards.Contains(playerCard1));
@@ -68,8 +69,8 @@ namespace CryptoGamesTests.Games.Poker
             var fullCardsOfTable = new List<Card>()
             {
                 //Player hand
-                playerCard1, // << Kicker
-                playerCard2,          
+                playerCard1, 
+                playerCard2        
             };
 
             fullCardsOfTable.AddRange(tableCards);
@@ -89,5 +90,40 @@ namespace CryptoGamesTests.Games.Poker
             
         }
 
+        [TestMethod]
+        public void TwoPairsCombo()
+        {
+
+            var playerCard1 = new Card(Rank.KING, Suit.SPADES); //first the King part of the pair
+            var playerCard2 = new Card(Rank.FOUR, Suit.HEARTS); //first the Four part of the pair
+
+            var tableCards = new Card[]
+            {
+                new Card(Rank.FIVE, Suit.DIAMONDS),
+                new Card(Rank.THREE, Suit.SPADES),
+                new Card(Rank.JACK, Suit.HEARTS),
+                new Card(Rank.KING, Suit.CLUBS), //second the King part of the pair
+                new Card(Rank.FOUR, Suit.DIAMONDS) //second the Four part of the pair 
+            };
+
+            //Arrange
+            var fullCardsOfTable = new List<Card>()
+            {
+                //Player hand
+                playerCard1,
+                playerCard2
+            };
+
+            fullCardsOfTable.AddRange(tableCards);
+
+            //Act
+            var comboCards = ComboChecker.Instance.CheckCombo(fullCardsOfTable);
+
+            //Assert
+            Assert.IsNotNull(comboCards);
+            Assert.IsNotInstanceOfType(comboCards, typeof(EmptyCombo));
+            Assert.AreEqual<Combo>(Combo.TWO_PAIR, comboCards.Combo);
+            Assert.IsTrue(comboCards.Cards.Any());
+        }
     }
 }
