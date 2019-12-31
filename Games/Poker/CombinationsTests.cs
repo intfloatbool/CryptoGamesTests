@@ -196,5 +196,40 @@ namespace CryptoGamesTests.Games.Poker
             Assert.AreEqual<Combo>(Combo.STRAIGHT, comboCards.Combo);
             Assert.IsTrue(comboCards.Cards.Any());
         }
+
+        [TestMethod]
+        public void FlushCombo()
+        {
+            var playerCard1 = new Card(Rank.EIGHT, Suit.SPADES); // Spades 1 
+            var playerCard2 = new Card(Rank.QUEEN, Suit.SPADES);  // Spades 2
+
+            var tableCards = new Card[]
+            {
+                new Card(Rank.FIVE, Suit.DIAMONDS),
+                new Card(Rank.NINE, Suit.SPADES), // Spades 3
+                new Card(Rank.TWO, Suit.SPADES),  // Spades 4
+                new Card(Rank.JACK, Suit.CLUBS),  
+                new Card(Rank.THREE, Suit.SPADES)// Spades 5
+            };
+
+            //Arrange
+            var fullCardsOfTable = new List<Card>()
+            {
+                //Player hand
+                playerCard1,
+                playerCard2
+            };
+
+            fullCardsOfTable.AddRange(tableCards);
+
+            //Act
+            var comboCards = ComboChecker.Instance.CheckCombo(fullCardsOfTable);
+
+            //Assert
+            Assert.IsNotNull(comboCards);
+            Assert.IsNotInstanceOfType(comboCards, typeof(EmptyCombo));
+            Assert.AreEqual<Combo>(Combo.FLUSH, comboCards.Combo);
+            Assert.IsTrue(comboCards.Cards.Any());
+        }
     }
 }
