@@ -345,5 +345,48 @@ namespace CryptoGamesTests.Games.Poker
             Assert.IsTrue(comboCards.Cards.Any());
             Assert.IsTrue(isComboCardsContainsCorrectly);
         }
+
+        [TestMethod]
+        public void StraightFlushCombo()
+        {
+            // K -> Q -> J -> T -> 9 straight flush of SPADES
+            var playerCard1 = new Card(Rank.KING, Suit.SPADES); //K
+            var playerCard2 = new Card(Rank.QUEEN, Suit.SPADES); //Q
+
+            var tableCards = new Card[]
+            {
+                new Card(Rank.FIVE, Suit.DIAMONDS),
+                new Card(Rank.NINE, Suit.SPADES), // 9
+                new Card(Rank.TEN, Suit.SPADES), // T
+                new Card(Rank.JACK, Suit.SPADES),  // J
+                new Card(Rank.SEVEN, Suit.HEARTS)
+            };
+
+            //Arrange
+            var fullCardsOfTable = new List<Card>()
+            {
+                //Player hand
+                playerCard1,
+                playerCard2
+            };
+
+            fullCardsOfTable.AddRange(tableCards);
+
+            //Act
+            var comboCards = ComboChecker.Instance.CheckCombo(fullCardsOfTable);
+            var resultCards = comboCards.Cards;
+            var isComboCardsContainsCorrectly =
+                resultCards.Contains(playerCard1) &&
+                resultCards.Contains(playerCard2) &&
+                resultCards.Contains(tableCards[1]) &&
+                resultCards.Contains(tableCards[2]) &&
+                resultCards.Contains(tableCards[3]);
+            //Assert
+            Assert.IsNotNull(comboCards);
+            Assert.IsNotInstanceOfType(comboCards, typeof(EmptyCombo));
+            Assert.AreEqual<Combo>(Combo.STRAIGHT_FLUSH, comboCards.Combo);
+            Assert.IsTrue(comboCards.Cards.Any());
+            Assert.IsTrue(isComboCardsContainsCorrectly);
+        }
     }
 }
