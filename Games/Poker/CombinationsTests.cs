@@ -302,5 +302,48 @@ namespace CryptoGamesTests.Games.Poker
             Assert.IsTrue(comboCards.Cards.Any());
             Assert.IsTrue(isComboCardsContainsCorrectly);
         }
+
+        [TestMethod]
+        public void FourOfKindCombo()
+        {
+            var playerCard1 = new Card(Rank.ACE, Suit.HEARTS); // A 1
+            var playerCard2 = new Card(Rank.ACE, Suit.SPADES);  // A 2
+
+            var tableCards = new Card[]
+            {
+                new Card(Rank.ACE, Suit.DIAMONDS), // A 3
+                new Card(Rank.ACE, Suit.CLUBS), // A 4 
+                new Card(Rank.JACK, Suit.SPADES),  
+                new Card(Rank.EIGHT, Suit.CLUBS),    
+                new Card(Rank.THREE, Suit.HEARTS)
+            };
+
+            //Arrange
+            var fullCardsOfTable = new List<Card>()
+            {
+                //Player hand
+                playerCard1,
+                playerCard2
+            };
+
+            fullCardsOfTable.AddRange(tableCards);
+
+            //Act
+            var comboCards = ComboChecker.Instance.CheckCombo(fullCardsOfTable);
+
+            var resultCards = comboCards.Cards;
+            var isComboCardsContainsCorrectly =
+                resultCards.Contains(playerCard1) &&
+                resultCards.Contains(playerCard2) &&
+                resultCards.Contains(tableCards[0]) &&
+                resultCards.Contains(tableCards[1]);
+
+            //Assert
+            Assert.IsNotNull(comboCards);
+            Assert.IsNotInstanceOfType(comboCards, typeof(EmptyCombo));
+            Assert.AreEqual<Combo>(Combo.FOUR_OF_A_KIND, comboCards.Combo);
+            Assert.IsTrue(comboCards.Cards.Any());
+            Assert.IsTrue(isComboCardsContainsCorrectly);
+        }
     }
 }
