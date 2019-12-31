@@ -118,12 +118,19 @@ namespace CryptoGamesTests.Games.Poker
 
             //Act
             var comboCards = ComboChecker.Instance.CheckCombo(fullCardsOfTable);
+            var resultCards = comboCards.Cards;
+            var isComboCardsContainsCorrectly =
+                resultCards.Contains(playerCard1) &&
+                resultCards.Contains(playerCard2) &&
+                resultCards.Contains(tableCards[3]) &&
+                resultCards.Contains(tableCards[4]);
 
             //Assert
             Assert.IsNotNull(comboCards);
             Assert.IsNotInstanceOfType(comboCards, typeof(EmptyCombo));
             Assert.AreEqual<Combo>(Combo.TWO_PAIR, comboCards.Combo);
             Assert.IsTrue(comboCards.Cards.Any());
+            Assert.IsTrue(isComboCardsContainsCorrectly);
         }
 
         [TestMethod]
@@ -153,12 +160,18 @@ namespace CryptoGamesTests.Games.Poker
 
             //Act
             var comboCards = ComboChecker.Instance.CheckCombo(fullCardsOfTable);
+            var resultCards = comboCards.Cards;
+            var isComboCardsContainsCorrectly =
+                resultCards.Contains(playerCard1) &&
+                resultCards.Contains(tableCards[3]) &&
+                resultCards.Contains(tableCards[4]);
 
             //Assert
             Assert.IsNotNull(comboCards);
             Assert.IsNotInstanceOfType(comboCards, typeof(EmptyCombo));
             Assert.AreEqual<Combo>(Combo.THREE_OF_A_KIND, comboCards.Combo);
             Assert.IsTrue(comboCards.Cards.Any());
+            Assert.IsTrue(isComboCardsContainsCorrectly);
         }
 
         [TestMethod]
@@ -189,12 +202,19 @@ namespace CryptoGamesTests.Games.Poker
 
             //Act
             var comboCards = ComboChecker.Instance.CheckCombo(fullCardsOfTable);
-
+            var resultCards = comboCards.Cards;
+            var isComboCardsContainsCorrectly =
+                resultCards.Contains(playerCard1) &&
+                resultCards.Contains(playerCard2) &&
+                resultCards.Contains(tableCards[1]) &&
+                resultCards.Contains(tableCards[2]) &&
+                resultCards.Contains(tableCards[3]);
             //Assert
             Assert.IsNotNull(comboCards);
             Assert.IsNotInstanceOfType(comboCards, typeof(EmptyCombo));
             Assert.AreEqual<Combo>(Combo.STRAIGHT, comboCards.Combo);
             Assert.IsTrue(comboCards.Cards.Any());
+            Assert.IsTrue(isComboCardsContainsCorrectly);
         }
 
         [TestMethod]
@@ -224,12 +244,63 @@ namespace CryptoGamesTests.Games.Poker
 
             //Act
             var comboCards = ComboChecker.Instance.CheckCombo(fullCardsOfTable);
-
+            var resultCards = comboCards.Cards;
+            var isComboCardsContainsCorrectly =
+                resultCards.Contains(playerCard1) &&
+                resultCards.Contains(playerCard2) &&
+                resultCards.Contains(tableCards[1]) &&
+                resultCards.Contains(tableCards[2]) &&
+                resultCards.Contains(tableCards[4]);
             //Assert
             Assert.IsNotNull(comboCards);
             Assert.IsNotInstanceOfType(comboCards, typeof(EmptyCombo));
             Assert.AreEqual<Combo>(Combo.FLUSH, comboCards.Combo);
             Assert.IsTrue(comboCards.Cards.Any());
+            Assert.IsTrue(isComboCardsContainsCorrectly);
+        }
+
+        [TestMethod]
+        public void FullHouseCombo()
+        {
+            var playerCard1 = new Card(Rank.QUEEN, Suit.HEARTS); // Q 1
+            var playerCard2 = new Card(Rank.QUEEN, Suit.SPADES);  // Q 2
+
+            var tableCards = new Card[]
+            {
+                new Card(Rank.QUEEN, Suit.DIAMONDS), // Q 3
+                new Card(Rank.NINE, Suit.CLUBS), 
+                new Card(Rank.JACK, Suit.SPADES),  // Jack 1
+                new Card(Rank.JACK, Suit.CLUBS),    // Jack 2
+                new Card(Rank.THREE, Suit.HEARTS)
+            };
+
+            //Arrange
+            var fullCardsOfTable = new List<Card>()
+            {
+                //Player hand
+                playerCard1,
+                playerCard2
+            };
+
+            fullCardsOfTable.AddRange(tableCards);
+            
+            //Act
+            var comboCards = ComboChecker.Instance.CheckCombo(fullCardsOfTable);
+
+            var resultCards = comboCards.Cards;
+            var isComboCardsContainsCorrectly =
+                resultCards.Contains(playerCard1) &&
+                resultCards.Contains(playerCard2) &&
+                resultCards.Contains(tableCards[0]) &&
+                resultCards.Contains(tableCards[2]) &&
+                resultCards.Contains(tableCards[3]);
+
+            //Assert
+            Assert.IsNotNull(comboCards);
+            Assert.IsNotInstanceOfType(comboCards, typeof(EmptyCombo));
+            Assert.AreEqual<Combo>(Combo.FULL_HOUSE, comboCards.Combo);
+            Assert.IsTrue(comboCards.Cards.Any());
+            Assert.IsTrue(isComboCardsContainsCorrectly);
         }
     }
 }
