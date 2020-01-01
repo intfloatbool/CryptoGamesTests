@@ -15,14 +15,14 @@ namespace CryptoGamesTests.Games.Poker
         {
             //Arrange
             var deckOfCards = DeckOfCards.CreateDefault();
-            var cards = deckOfCards.DeckCards;
-
+            
             var suitsCount = 4;
             var ranksCount = 13;
             var cardsCount = ranksCount * suitsCount;
 
             //Act
-            deckOfCards.RefershDeck(false);
+            deckOfCards.RefershDeck();
+            var cards = deckOfCards.DeckCards;
 
             var spadesCards = cards.Where(c => c.Suit == Suit.SPADES);
             var heartsCards = cards.Where(c => c.Suit == Suit.HEARTS);
