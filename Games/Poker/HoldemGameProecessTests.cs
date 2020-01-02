@@ -1,5 +1,6 @@
 ﻿using EthWebPoker.Games.CardGames;
 using EthWebPoker.Games.CardGames.CardBase;
+using EthWebPoker.Games.CardGames.HoldemPoker.Gameplay;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -60,6 +61,35 @@ namespace CryptoGamesTests.Games.Poker
             Assert.IsTrue(player1.Cards.Contains(card2));
             Assert.IsFalse(player2.Cards.Any());
 
+        }
+
+        [TestMethod]
+        public void TableTest()
+        {
+            var table = new CardTable();
+            table.AddCard(new Card(Rank.ACE, Suit.CLUBS));
+            table.AddCard(new Card(Rank.TWO, Suit.HEARTS));
+
+            Assert.IsTrue(table.Cards.Any());
+            Assert.AreEqual(table.Cards.Count, 2);
+        }
+
+        [TestMethod]
+        public void CardDealerDealCardsTest()
+        {
+            var deck = DeckOfCards.CreateDefault();
+            var p1 = new CardPlayer();
+            var p2 = new CardPlayer();
+            var tableCards = new CardTable();
+            var dealer = new CardDealer(deck, new[] { p1, p2 }, tableCards);
+
+            dealer.DealCards();
+
+            Assert.IsNotNull(dealer.TempDeck);
+            Assert.AreEqual(2, dealer.Players.Count);
+            Assert.AreEqual(2, p1.Cards.Count);
+            Assert.AreEqual(2, p2.Cards.Count);
+            Assert.AreEqual(5, tableCards.Cards.Count);
         }
     }
 }
