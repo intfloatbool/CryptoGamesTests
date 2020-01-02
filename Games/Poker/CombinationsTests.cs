@@ -177,8 +177,8 @@ namespace CryptoGamesTests.Games.Poker
         [TestMethod]
         public void StraightCombo()
         {
-            // K -> Q -> J -> T -> 9 straight
-            var playerCard1 = new Card(Rank.KING, Suit.SPADES); //K
+            // Q -> J -> T -> 9 -> 8 straight
+            var playerCard1 = new Card(Rank.JACK, Suit.SPADES); //J
             var playerCard2 = new Card(Rank.QUEEN, Suit.HEARTS); //Q
 
             var tableCards = new Card[]
@@ -186,8 +186,8 @@ namespace CryptoGamesTests.Games.Poker
                 new Card(Rank.FIVE, Suit.DIAMONDS),
                 new Card(Rank.NINE, Suit.SPADES), // 9
                 new Card(Rank.TEN, Suit.HEARTS), // T
-                new Card(Rank.JACK, Suit.CLUBS),  // J
-                new Card(Rank.FOUR, Suit.DIAMONDS) 
+                new Card(Rank.EIGHT, Suit.CLUBS),  // 8
+                new Card(Rank.KING, Suit.DIAMONDS) 
             };
 
             //Arrange

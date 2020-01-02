@@ -1,5 +1,6 @@
 ﻿using EthWebPoker.Games.CardGames;
 using EthWebPoker.Games.CardGames.CardBase;
+using EthWebPoker.Games.CardGames.HoldemPoker;
 using EthWebPoker.Games.CardGames.HoldemPoker.Gameplay;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
