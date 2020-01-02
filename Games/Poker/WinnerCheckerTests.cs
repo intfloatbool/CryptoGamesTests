@@ -9,9 +9,13 @@ using System.Text;
 
 namespace CryptoGamesTests.Games.Poker
 {
+    /// <summary>
+    /// Tests for comparing some game events in holdem
+    /// </summary>
     [TestClass]
     public class WinnerCheckerTests
     {
+        //TODO check all methods again and addict kicker logic!
         [TestMethod]
         public void OnePlayerWithHighestCard()
         {
