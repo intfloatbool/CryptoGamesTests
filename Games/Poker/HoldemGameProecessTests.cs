@@ -2,6 +2,7 @@
 using EthWebPoker.Games.CardGames.CardBase;
 using EthWebPoker.Games.CardGames.HoldemPoker;
 using EthWebPoker.Games.CardGames.HoldemPoker.Gameplay;
+using EthWebPoker.Games.CardGames.HoldemPoker.Player;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -91,6 +92,45 @@ namespace CryptoGamesTests.Games.Poker
             Assert.AreEqual(2, p1.Cards.Count);
             Assert.AreEqual(2, p2.Cards.Count);
             Assert.AreEqual(5, tableCards.Cards.Count);
+        }
+
+        [TestMethod]
+        public void HoldemGameGetPlayersTests()
+        {
+            var holdemGame = new HoldemGame();
+            holdemGame.Start();
+            var p1 = holdemGame.GetPlayerByType(PlayerType.PLAYER_1);
+            var p2 = holdemGame.GetPlayerByType(PlayerType.PLAYER_2);
+
+            Assert.IsNotNull(p1);
+            Assert.IsNotNull(p2);
+        }
+
+        [TestMethod]
+        public void HoldemGameGetTableCardsTest()
+        {
+            var holdemGame = new HoldemGame();
+            holdemGame.Start();
+
+            var table = holdemGame.GetTableCards();
+
+            Assert.IsNotNull(table);
+            Assert.IsTrue(table.Any());
+            Assert.AreEqual(table.Count(), 5);
+        }
+
+        [TestMethod]
+        public void HoldemGameAtLeastHasOneWinner()
+        {
+            var holdemGame = new HoldemGame();
+            var countOfGames = 100;
+            for(int i = 0; i < countOfGames; i++)
+            {
+                holdemGame.Start();
+                var winners = holdemGame.GetWinners();
+                Assert.IsNotNull(winners);
+                Assert.IsTrue(winners.Any());
+            }
         }
     }
 }
