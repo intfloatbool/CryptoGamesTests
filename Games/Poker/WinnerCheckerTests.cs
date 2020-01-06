@@ -582,5 +582,78 @@ namespace CryptoGamesTests.Games.Poker
             Assert.IsTrue(winnerContainer.Players.Contains(p2));
             Assert.AreEqual(Combo.FLUSH, winnerContainer.Combination);
         }
+
+        [TestMethod]
+        public void OnePlayerWithFullHouse()
+        {
+            var p1 = new CardPlayer();
+            var p2 = new CardPlayer();
+            var tableCards = new CardTable();
+            var winnerChecker = new WinnerChecker();
+
+            //P1 with FullHouse: 4-4-4-9-9
+            p1.AddCard(new Card(Rank.FOUR, Suit.CLUBS)); 
+            p1.AddCard(new Card(Rank.FOUR, Suit.DIAMONDS)); 
+
+            p2.AddCard(new Card(Rank.FIVE, Suit.HEARTS));
+            p2.AddCard(new Card(Rank.SIX, Suit.DIAMONDS));
+
+            tableCards.AddCard(new Card(Rank.FOUR, Suit.SPADES));
+            tableCards.AddCard(new Card(Rank.NINE, Suit.HEARTS));
+            tableCards.AddCard(new Card(Rank.NINE, Suit.CLUBS));
+            tableCards.AddCard(new Card(Rank.KING, Suit.SPADES));
+            tableCards.AddCard(new Card(Rank.TWO, Suit.DIAMONDS));
+
+            var winnerContainer = winnerChecker.GetWinnerWithCombo(new[]
+            {
+                p1, p2
+            }, tableCards);
+
+            Assert.IsNotNull(winnerContainer);
+            Assert.IsNotNull(winnerContainer.Players);
+            Assert.IsNotNull(winnerContainer.Combination);
+            Assert.AreEqual(1, winnerContainer.Players.Count);
+            Assert.IsTrue(winnerContainer.Players.Contains(p1));
+            Assert.AreEqual(Combo.FULL_HOUSE, winnerContainer.Combination);
+        }
+
+        [TestMethod]
+        public void TwoPlayersWithFullHouse()
+        {
+            var p1 = new CardPlayer();
+            var p2 = new CardPlayer();
+            var tableCards = new CardTable();
+            var winnerChecker = new WinnerChecker();
+
+            //P1 with FullHouse: 4-4-4-9-9
+            //P2 with higher combo: 6-6-6-9-9
+            p1.AddCard(new Card(Rank.FOUR, Suit.CLUBS));
+            p1.AddCard(new Card(Rank.FOUR, Suit.DIAMONDS));
+
+            p2.AddCard(new Card(Rank.SIX, Suit.HEARTS));
+            p2.AddCard(new Card(Rank.SIX, Suit.DIAMONDS));
+
+            tableCards.AddCard(new Card(Rank.FOUR, Suit.SPADES));
+            tableCards.AddCard(new Card(Rank.NINE, Suit.HEARTS));
+            tableCards.AddCard(new Card(Rank.NINE, Suit.CLUBS));
+            tableCards.AddCard(new Card(Rank.SIX, Suit.SPADES));
+            tableCards.AddCard(new Card(Rank.TWO, Suit.DIAMONDS));
+
+            var winnerContainer = winnerChecker.GetWinnerWithCombo(new[]
+            {
+                p1, p2
+            }, tableCards);
+
+            Assert.IsNotNull(winnerContainer);
+            Assert.IsNotNull(winnerContainer.Players);
+            Assert.IsNotNull(winnerContainer.Combination);
+            Assert.AreEqual(1, winnerContainer.Players.Count);
+            Assert.IsTrue(winnerContainer.Players.Contains(p2));
+            Assert.AreEqual(Combo.FULL_HOUSE, winnerContainer.Combination);
+        }
+
+        //Afterwards we will skip all tests with "same combo", 
+        //becouse there is cannot be same combo in next combinations!
+        
     }
 }
