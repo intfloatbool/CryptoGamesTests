@@ -2,6 +2,7 @@
 using EthWebPoker.Games.CardGames.CardBase;
 using EthWebPoker.Games.CardGames.HoldemPoker;
 using EthWebPoker.Games.CardGames.HoldemPoker.Gameplay;
+using EthWebPoker.Games.CardGames.HoldemPoker.Player;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -19,8 +20,8 @@ namespace CryptoGamesTests.Games.Poker
         [TestMethod]
         public void OnePlayerWithHighestCard()
         {
-            var p1 = new CardPlayer();
-            var p2 = new CardPlayer();
+            var p1 = new HoldemPlayer();
+            var p2 = new HoldemPlayer();
             var tableCards = new CardTable();
             var winnerChecker = new WinnerChecker();
 
@@ -52,8 +53,8 @@ namespace CryptoGamesTests.Games.Poker
         [TestMethod]
         public void TwoPlayersWithHighestCard()
         {
-            var p1 = new CardPlayer();
-            var p2 = new CardPlayer();
+            var p1 = new HoldemPlayer();
+            var p2 = new HoldemPlayer();
             var tableCards = new CardTable();
             var winnerChecker = new WinnerChecker();
 
@@ -86,8 +87,8 @@ namespace CryptoGamesTests.Games.Poker
         [TestMethod]
         public void OnePlayerWithOnePair()
         {
-            var p1 = new CardPlayer();
-            var p2 = new CardPlayer();
+            var p1 = new HoldemPlayer();
+            var p2 = new HoldemPlayer();
             var tableCards = new CardTable();
             var winnerChecker = new WinnerChecker();
 
@@ -119,8 +120,8 @@ namespace CryptoGamesTests.Games.Poker
         [TestMethod]
         public void TwoPlayerWithOnePair()
         {
-            var p1 = new CardPlayer();
-            var p2 = new CardPlayer();
+            var p1 = new HoldemPlayer();
+            var p2 = new HoldemPlayer();
             var tableCards = new CardTable();
             var winnerChecker = new WinnerChecker();
 
@@ -152,8 +153,8 @@ namespace CryptoGamesTests.Games.Poker
         [TestMethod]
         public void TwoPlayerWithSamePair()
         {
-            var p1 = new CardPlayer();
-            var p2 = new CardPlayer();
+            var p1 = new HoldemPlayer();
+            var p2 = new HoldemPlayer();
             var tableCards = new CardTable();
             var winnerChecker = new WinnerChecker();
 
@@ -186,8 +187,8 @@ namespace CryptoGamesTests.Games.Poker
         [TestMethod]
         public void OnePlayerWithTwoPairs()
         {
-            var p1 = new CardPlayer();
-            var p2 = new CardPlayer();
+            var p1 = new HoldemPlayer();
+            var p2 = new HoldemPlayer();
             var tableCards = new CardTable();
             var winnerChecker = new WinnerChecker();
 
@@ -219,8 +220,8 @@ namespace CryptoGamesTests.Games.Poker
         [TestMethod]
         public void TwoPlayersWithTwoPairs()
         {
-            var p1 = new CardPlayer();
-            var p2 = new CardPlayer();
+            var p1 = new HoldemPlayer();
+            var p2 = new HoldemPlayer();
             var tableCards = new CardTable();
             var winnerChecker = new WinnerChecker();
 
@@ -252,8 +253,8 @@ namespace CryptoGamesTests.Games.Poker
         [TestMethod]
         public void TwoPlayersWithSameTwoPairs()
         {
-            var p1 = new CardPlayer();
-            var p2 = new CardPlayer();
+            var p1 = new HoldemPlayer();
+            var p2 = new HoldemPlayer();
             var tableCards = new CardTable();
             var winnerChecker = new WinnerChecker();
 
@@ -286,8 +287,8 @@ namespace CryptoGamesTests.Games.Poker
         [TestMethod]
         public void OnePlayerWithThreeOfKind()
         {
-            var p1 = new CardPlayer();
-            var p2 = new CardPlayer();
+            var p1 = new HoldemPlayer();
+            var p2 = new HoldemPlayer();
             var tableCards = new CardTable();
             var winnerChecker = new WinnerChecker();
 
@@ -319,8 +320,8 @@ namespace CryptoGamesTests.Games.Poker
         [TestMethod]
         public void TwoPlayersWithSameThreeOfKind()
         {
-            var p1 = new CardPlayer();
-            var p2 = new CardPlayer();
+            var p1 = new HoldemPlayer();
+            var p2 = new HoldemPlayer();
             var tableCards = new CardTable();
             var winnerChecker = new WinnerChecker();
 
@@ -353,8 +354,8 @@ namespace CryptoGamesTests.Games.Poker
         [TestMethod]
         public void TwoPlayersWithThreeOfKindButOneHasBestKicker()
         {
-            var p1 = new CardPlayer();
-            var p2 = new CardPlayer();
+            var p1 = new HoldemPlayer();
+            var p2 = new HoldemPlayer();
             var tableCards = new CardTable();
             var winnerChecker = new WinnerChecker();
 
@@ -386,8 +387,8 @@ namespace CryptoGamesTests.Games.Poker
         [TestMethod]
         public void OnePlayerWithStraight()
         {
-            var p1 = new CardPlayer();
-            var p2 = new CardPlayer();
+            var p1 = new HoldemPlayer();
+            var p2 = new HoldemPlayer();
             var tableCards = new CardTable();
             var winnerChecker = new WinnerChecker();
 
@@ -419,8 +420,8 @@ namespace CryptoGamesTests.Games.Poker
         [TestMethod]
         public void TwoPlayersWithStraight()
         {
-            var p1 = new CardPlayer();
-            var p2 = new CardPlayer();
+            var p1 = new HoldemPlayer();
+            var p2 = new HoldemPlayer();
             var tableCards = new CardTable();
             var winnerChecker = new WinnerChecker();
 
@@ -452,8 +453,8 @@ namespace CryptoGamesTests.Games.Poker
         [TestMethod]
         public void TwoPlayersWithSameStraight()
         {
-            var p1 = new CardPlayer();
-            var p2 = new CardPlayer();
+            var p1 = new HoldemPlayer();
+            var p2 = new HoldemPlayer();
             var tableCards = new CardTable();
             var winnerChecker = new WinnerChecker();
 
@@ -486,8 +487,8 @@ namespace CryptoGamesTests.Games.Poker
         [TestMethod]
         public void OnePlayerWithFlush()
         {
-            var p1 = new CardPlayer();
-            var p2 = new CardPlayer();
+            var p1 = new HoldemPlayer();
+            var p2 = new HoldemPlayer();
             var tableCards = new CardTable();
             var winnerChecker = new WinnerChecker();
 
@@ -519,8 +520,8 @@ namespace CryptoGamesTests.Games.Poker
         [TestMethod]
         public void TwoPlayersWithFlush()
         {
-            var p1 = new CardPlayer();
-            var p2 = new CardPlayer();
+            var p1 = new HoldemPlayer();
+            var p2 = new HoldemPlayer();
             var tableCards = new CardTable();
             var winnerChecker = new WinnerChecker();
 
@@ -552,8 +553,8 @@ namespace CryptoGamesTests.Games.Poker
         [TestMethod]
         public void TwoPlayersWithSameFlush()
         {
-            var p1 = new CardPlayer();
-            var p2 = new CardPlayer();
+            var p1 = new HoldemPlayer();
+            var p2 = new HoldemPlayer();
             var tableCards = new CardTable();
             var winnerChecker = new WinnerChecker();
 
@@ -586,8 +587,8 @@ namespace CryptoGamesTests.Games.Poker
         [TestMethod]
         public void OnePlayerWithFullHouse()
         {
-            var p1 = new CardPlayer();
-            var p2 = new CardPlayer();
+            var p1 = new HoldemPlayer();
+            var p2 = new HoldemPlayer();
             var tableCards = new CardTable();
             var winnerChecker = new WinnerChecker();
 
@@ -620,8 +621,8 @@ namespace CryptoGamesTests.Games.Poker
         [TestMethod]
         public void TwoPlayersWithFullHouse()
         {
-            var p1 = new CardPlayer();
-            var p2 = new CardPlayer();
+            var p1 = new HoldemPlayer();
+            var p2 = new HoldemPlayer();
             var tableCards = new CardTable();
             var winnerChecker = new WinnerChecker();
 
@@ -657,8 +658,8 @@ namespace CryptoGamesTests.Games.Poker
         [TestMethod]
         public void OnePlayerWithFourOfAKind()
         {
-            var p1 = new CardPlayer();
-            var p2 = new CardPlayer();
+            var p1 = new HoldemPlayer();
+            var p2 = new HoldemPlayer();
             var tableCards = new CardTable();
             var winnerChecker = new WinnerChecker();
 
@@ -692,8 +693,8 @@ namespace CryptoGamesTests.Games.Poker
         [TestMethod]
         public void OnePlayerWithStraigthFlush()
         {
-            var p1 = new CardPlayer();
-            var p2 = new CardPlayer();
+            var p1 = new HoldemPlayer();
+            var p2 = new HoldemPlayer();
             var tableCards = new CardTable();
             var winnerChecker = new WinnerChecker();
 
@@ -727,8 +728,8 @@ namespace CryptoGamesTests.Games.Poker
         [TestMethod]
         public void OnePlayerWithRoyalFlush()
         {
-            var p1 = new CardPlayer();
-            var p2 = new CardPlayer();
+            var p1 = new HoldemPlayer();
+            var p2 = new HoldemPlayer();
             var tableCards = new CardTable();
             var winnerChecker = new WinnerChecker();
 

@@ -1,4 +1,5 @@
-﻿using EthWebPoker.Games.CardGames;
+﻿using EthWebPoker.Games;
+using EthWebPoker.Games.CardGames;
 using EthWebPoker.Games.CardGames.CardBase;
 using EthWebPoker.Games.CardGames.HoldemPoker;
 using EthWebPoker.Games.CardGames.HoldemPoker.Gameplay;
